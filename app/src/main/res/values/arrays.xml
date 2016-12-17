@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="typeName">
+        <item>By TOP</item>
+        <item>By Hot</item>
+    </string-array>
+    <string-array name="typeValue">
+        <item>com.example.hello.hellomovie.Threads.TopMovieThread</item>
+        <item>com.example.hello.hellomovie.Threads.HotMovieThread</item>
+    </string-array>
+</resources>

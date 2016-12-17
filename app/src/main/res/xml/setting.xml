@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="SETTING">
+    <ListPreference
+        android:key="@string/type_key"
+        android:defaultValue="@string/default_movie_type"
+        android:title="MovirType"
+        android:summary="Set Movie Type"
+        android:entries="@array/typeName"
+        android:entryValues="@array/typeValue"
+        android:dialogTitle="MovieTitle"
+        />
+
+
+</PreferenceScreen>
