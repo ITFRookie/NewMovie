@@ -1,14 +1,9 @@
 package com.example.hello.hellomovie.Activitys;
 
-import android.app.LoaderManager;
 import android.content.ActivityNotFoundException;
-import android.content.ContentProvider;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -17,13 +12,11 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.hello.hellomovie.Adapters.ListViewCommentAdapter;
 import com.example.hello.hellomovie.Adapters.ListViewPreviewAdapter;
@@ -35,10 +28,8 @@ import com.example.hello.hellomovie.MovieConstants;
 import com.example.hello.hellomovie.Providers.MovieContentProvider;
 import com.example.hello.hellomovie.R;
 import com.example.hello.hellomovie.Threads.ShowMovieBeanThread;
-import com.example.hello.hellomovie.Utils.MovieGetJsonUtil;
-import com.example.hello.hellomovie.Utils.MovieJsonAndBeanTran;
+import com.example.hello.hellomovie.Utils.MovieToastUtil;
 import com.example.hello.hellomovie.Utils.MovieViewUtil;
-import com.example.hello.hellomovie.Utils.ToastUtil;
 import com.example.hello.hellomovie.Views.MovieImageView;
 import com.squareup.picasso.Picasso;
 
@@ -87,7 +78,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_show_info);
         movieID = getIntent().getExtras().getString(MovieConstants.MOVIE_ID);
         //  printInfo("正在加载，请耐心等待");
-        ToastUtil.showMsg(ShowInfoActivity.this, "正在加载，请耐心等待");
+        MovieToastUtil.showMsg(ShowInfoActivity.this, "正在加载，请耐心等待");
         initApi_key();
         initView();
         initContent();
@@ -121,7 +112,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
             api_key = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData.getString("api_key");
         } catch (PackageManager.NameNotFoundException e) {
             // printInfo("获取失败");
-            ToastUtil.showMsg(ShowInfoActivity.this, "获取失败");
+            MovieToastUtil.showMsg(ShowInfoActivity.this, "获取失败");
         }
         ;
     }
@@ -131,13 +122,13 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
         ShowMovieBeanThread parseThread = null;
         if (!isOnline()) {
             // printInfo("检查网络连接");
-            ToastUtil.showMsg(ShowInfoActivity.this, "检查网络连接");
+            MovieToastUtil.showMsg(ShowInfoActivity.this, "检查网络连接");
         }
         try {
             parseThread = new ShowMovieBeanThread(ShowInfoActivity.this, movieID);
         } catch (PackageManager.NameNotFoundException e) {
             //  printInfo("获取失败");
-            ToastUtil.showMsg(ShowInfoActivity.this, "获取失败");
+            MovieToastUtil.showMsg(ShowInfoActivity.this, "获取失败");
         }
         parseThread.setmCallBack(this);
         parseThread.start();
@@ -211,7 +202,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
 //            getContentResolver().update(MovieContentProvider.CONTENT_MOVIE_INFOS, values2, "mID=?", new String[]{String.valueOf(infoBean.getId())});
 //            btn_coll.setText("取消收藏");
 //            //  printInfo("successful!");
-//            ToastUtil.showMsg(ShowInfoActivity.this, "Successful");
+//            MovieToastUtil.showMsg(ShowInfoActivity.this, "Successful");
 //        } else {
 //            ContentValues values = new ContentValues();
 //            values.put("mFlag", "0");
@@ -219,7 +210,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
 //            getContentResolver().delete(MovieContentProvider.CONTENT_MOVIE_COLL, "mID=?", new String[]{String.valueOf(infoBean.getId())});
 //            btn_coll.setText("收藏");
 //            //  printInfo("successful!");
-//            ToastUtil.showMsg(ShowInfoActivity.this, "Successful");
+//            MovieToastUtil.showMsg(ShowInfoActivity.this, "Successful");
 //
 //
 //        }
@@ -271,7 +262,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
                     return FLAG_COLL_TRUE;
 //            btn_coll.setText("取消收藏");
 //            //  printInfo("successful!");
-//            ToastUtil.showMsg(ShowInfoActivity.this, "Successful");
+//            MovieToastUtil.showMsg(ShowInfoActivity.this, "Successful");
                 } else if (("取消收藏").equals(txt)) {
                     ContentValues values = new ContentValues();
                     values.put("mFlag", "0");
@@ -279,7 +270,7 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
                     getContentResolver().delete(MovieContentProvider.CONTENT_MOVIE_COLL, "mID=?", new String[]{String.valueOf(infoBean.getId())});
 //            btn_coll.setText("收藏");
 //            //  printInfo("successful!");
-//            ToastUtil.showMsg(ShowInfoActivity.this, "Successful");
+//            MovieToastUtil.showMsg(ShowInfoActivity.this, "Successful");
                     return FLAG__COLL_FALSE;
 
                 } else return FLAG_COLL_FAILED;
@@ -290,11 +281,11 @@ public class ShowInfoActivity extends AppCompatActivity implements View.OnClickL
                 switch (integer) {
                     case FLAG_COLL_TRUE:
                         btn_coll.setText("取消收藏");
-                        ToastUtil.showMsg(ShowInfoActivity.this, "successful!");
+                        MovieToastUtil.showMsg(ShowInfoActivity.this, "successful!");
                         break;
                     case FLAG__COLL_FALSE:
                         btn_coll.setText("收藏");
-                        ToastUtil.showMsg(ShowInfoActivity.this, "successful!");
+                        MovieToastUtil.showMsg(ShowInfoActivity.this, "successful!");
                         break;
 
 

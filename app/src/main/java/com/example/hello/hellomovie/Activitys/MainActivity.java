@@ -18,16 +18,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.hello.hellomovie.Adapters.MovieListDBCursorAdapter;
 import com.example.hello.hellomovie.Beans.MovieInfoBean;
@@ -36,7 +32,7 @@ import com.example.hello.hellomovie.Interfaces.RecyclerItemClicker;
 import com.example.hello.hellomovie.MovieConstants;
 import com.example.hello.hellomovie.Providers.MovieContentProvider;
 import com.example.hello.hellomovie.R;
-import com.example.hello.hellomovie.Utils.ToastUtil;
+import com.example.hello.hellomovie.Utils.MovieToastUtil;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -101,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //printInfo("请刷新");
-        ToastUtil.showMsg(MainActivity.this, "请刷新");
+        MovieToastUtil.showMsg(MainActivity.this, "请刷新");
         initView();
         //为activity销毁重建时保存状态  eg：横竖屏切换
         if (savedInstanceState != null) {
@@ -161,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
                 } catch (Exception e) {
                     e.printStackTrace();
                     //  printInfo("刷新失败");
-                    ToastUtil.showMsg(MainActivity.this, "刷新失败");
+                    MovieToastUtil.showMsg(MainActivity.this, "刷新失败");
                 }
                 break;
             case R.id.action_filter:
@@ -228,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
             tStart.invoke(object);
         } else {
             //printInfo("请检查网络连接");
-            ToastUtil.showMsg(MainActivity.this, "请检查网络连接");
+            MovieToastUtil.showMsg(MainActivity.this, "请检查网络连接");
         }
     }
 
