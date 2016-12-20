@@ -36,6 +36,7 @@ import com.example.hello.hellomovie.Interfaces.RecyclerItemClicker;
 import com.example.hello.hellomovie.MovieConstants;
 import com.example.hello.hellomovie.Providers.MovieContentProvider;
 import com.example.hello.hellomovie.R;
+import com.example.hello.hellomovie.Utils.ToastUtil;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        printInfo("请刷新");
+        //printInfo("请刷新");
+        ToastUtil.showMsg(MainActivity.this, "请刷新");
         initView();
         //为activity销毁重建时保存状态  eg：横竖屏切换
         if (savedInstanceState != null) {
@@ -158,7 +160,8 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
                     fressh();//点击刷新
                 } catch (Exception e) {
                     e.printStackTrace();
-                    printInfo("刷新失败");
+                    //  printInfo("刷新失败");
+                    ToastUtil.showMsg(MainActivity.this, "刷新失败");
                 }
                 break;
             case R.id.action_filter:
@@ -224,7 +227,8 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
             //有网则网络获取
             tStart.invoke(object);
         } else {
-            printInfo("请检查网络连接");
+            //printInfo("请检查网络连接");
+            ToastUtil.showMsg(MainActivity.this, "请检查网络连接");
         }
     }
 
@@ -318,10 +322,10 @@ public class MainActivity extends AppCompatActivity implements MovieJsonCallBack
         return ni != null && ni.isConnected();
     }
 
-    private void printInfo(String s) {
-        //打印提示消息
-        Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
-    }
+//    private void printInfo(String s) {
+//        //打印提示消息
+//        Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
     public void onMovieJsonGot(ArrayList<MovieInfoBean> list) {

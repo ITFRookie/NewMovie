@@ -96,6 +96,7 @@ public class ShowMovieBeanThread extends Thread {
 
             }
             //回调
+            if (mCallBack!=null)
             mCallBack.onMovieInfoGot(listTime, listPreview, listComment,infoBean);
         }
     }

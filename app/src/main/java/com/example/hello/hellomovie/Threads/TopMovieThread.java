@@ -26,6 +26,7 @@ public class TopMovieThread extends MovieThread {
         ArrayList<MovieInfoBean> list = MovieJsonAndBeanTran.parseJsonFromNet(data);
         storeToDB(list);
       //  storeAllToDB(list);
+        if (mCallBack!=null)
         mCallBack.onMovieJsonGot(list);//回调借口的监听方法
 
     }

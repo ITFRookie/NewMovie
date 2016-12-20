@@ -2,22 +2,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
-    >
-
+    android:descendantFocusability="blocksDescendants">
+    <!--  若添加button发现点击事件冲突的话，查找android:descendantFocusability -->
     <TextView
         android:id="@+id/preview_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
         android:gravity="center_vertical"
-        android:textSize="@dimen/medium_font_size"
-        />
+        android:textSize="@dimen/medium_font_size" />
 
-    <Button
-        android:id="@+id/preview_play"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/play"
-      android:layout_alignParentRight="true"
-        />
+        android:layout_alignParentRight="true"
+        android:textSize="@dimen/big_font_size"
+        android:text="Play" />
 </RelativeLayout>

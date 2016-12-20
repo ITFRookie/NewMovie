@@ -49,9 +49,7 @@ public class ListViewPreviewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View mView = inflater.inflate(R.layout.listviewpreview, null);
         TextView txt = (TextView) mView.findViewById(R.id.preview_name);
-        Button btn_play = (Button) mView.findViewById(R.id.preview_play);
         txt.setText("预告片" + (i + 1));
-        btn_play.setTag(list.get(i).getName());
         return mView;
     }
 }
